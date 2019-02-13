@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Problem;
+use DB;
 
 class ProblemsController extends Controller
 {
@@ -14,7 +15,7 @@ class ProblemsController extends Controller
      */
     public function index()
     {
-         $problems = Problem::all();
+         $problems = Problem::orderBy('id','desc')->paginate(4);
 
          return view('problems.index')->with('problems',$problems);
     }
@@ -26,7 +27,8 @@ class ProblemsController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('problems.create');
     }
 
     /**
@@ -37,7 +39,25 @@ class ProblemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'problemType'=>'required',
+            'userName'=>'required',
+            'department'=>'required',
+            'discription'=>'required'
+        ]);
+
+        //Create and save Problem
+        $problem = new Problem;
+        $problem->title = $request->input('title');
+        $problem->problemType = $request->input('problemType');
+        $problem->userName = $request->input('userName');
+        $problem->department = $request->input('department');
+        $problem->discription = $request->input('discription');
+        $problem->save();
+        
+
+        return redirect('/problems')->with('success','Problem Created');
     }
 
     /**
@@ -48,7 +68,10 @@ class ProblemsController extends Controller
      */
     public function show($id)
     {
-        //
+       
+       $problem = $problem = Problem::find($id);
+
+        return view('problems.show')->with('problem',$problem);
     }
 
     /**
@@ -59,7 +82,8 @@ class ProblemsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $problem = $problem = Problem::find($id);
+        return view('problems.edit')->with('problem',$problem);
     }
 
     /**
@@ -71,7 +95,25 @@ class ProblemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'problemType'=>'required',
+            'userName'=>'required',
+            'department'=>'required',
+            'discription'=>'required'
+        ]);
+
+        //Create and save Problem
+        $problem = Problem::find($id);
+        $problem->title = $request->input('title');
+        $problem->problemType = $request->input('problemType');
+        $problem->userName = $request->input('userName');
+        $problem->department = $request->input('department');
+        $problem->discription = $request->input('discription');
+        $problem->save();
+        
+
+        return redirect('/problems')->with('success','Problem Updated');
     }
 
     /**
@@ -82,6 +124,9 @@ class ProblemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $problem = Problem::find($id);
+        $problem->delete();
+        return redirect('/problems')->with('success','Problem Removed');
+
     }
 }
