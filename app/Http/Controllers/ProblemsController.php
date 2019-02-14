@@ -54,6 +54,7 @@ class ProblemsController extends Controller
         $problem->userName = $request->input('userName');
         $problem->department = $request->input('department');
         $problem->discription = $request->input('discription');
+        $problem->user_id = auth()->user()->id;
         $problem->save();
         
 

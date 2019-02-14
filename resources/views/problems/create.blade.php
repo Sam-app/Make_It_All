@@ -11,10 +11,10 @@
     <div class="form-group">
             {{Form::label('problemType', 'Problem Type')}}
             {{ Form::select('problemType', array(
-                'Printer',
-                'Network',
-                'Operating system',
-                'Other'),
+                'Printer'=>'Printer',
+                'Network'=>'Network',
+                'Operating system'=>'Operating system',
+                'Other'=>'Other'),
                 ['class' => 'form-control','placeholder'=>'Title']
 
             )}}
@@ -28,10 +28,10 @@
     <div class="form-group">
             {{Form::label('department', 'Problem Type')}}
             {{ Form::select('department', array(
-                'HR',
-                'Technicians',
-                'Managment',
-                'Other'),
+                'HR'=>'HR',
+                'Technicians'=>'Technicians',
+                'Managment'=>'Managment',
+                'Other'=>'Other'),
                 ['class' => 'form-control','placeholder'=>'Title']
 
             )}}
