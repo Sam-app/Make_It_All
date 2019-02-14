@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect('/');
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        $problems = $user->problems()->paginate(4);
+        $name = 'Samuel';
+        return view('/home')->with('problems',$problems)->with('name',$name);
     }
 }
