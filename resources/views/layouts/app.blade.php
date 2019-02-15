@@ -33,7 +33,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @guest
+                        @else  
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/problems/create">New Record</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/problems">Show All Record</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">logout</a>
+                        </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -61,8 +75,8 @@
                                                              document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
-        
-                                           
+
+
                                         </div>
                             </li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -74,9 +88,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container">
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 </html>
