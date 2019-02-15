@@ -17,6 +17,7 @@ class SearchController extends Controller
                     ->where('id', '=', $query)
                     ->orWhere('userName', $query)
                     ->orWhere('department', $query)
+                    ->orWhere('problemType', $query)
                     ->get();
         
         return $problems;
