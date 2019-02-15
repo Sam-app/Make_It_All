@@ -19,3 +19,7 @@ Route::resource('problems','ProblemsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//  search route
+Route::get('/search/{query}', 'SearchController@filter');
