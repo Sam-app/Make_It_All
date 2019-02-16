@@ -20,10 +20,10 @@
             )}}
     </div>
 
-    <div class="form-group">
+    {{-- <div class="form-group">
             {{Form::label('userName', 'User Name')}}
             {{Form::text('userName', '', ['class' => 'form-control','placeholder'=>'Title'])}}
-    </div>
+    </div> --}}
 
     <div class="form-group">
             {{Form::label('department', 'Problem Type')}}

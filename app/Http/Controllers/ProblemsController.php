@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Problem;
 use App\Call;
+use App\User;
 use DB;
 
 class ProblemsController extends Controller
@@ -43,19 +44,30 @@ class ProblemsController extends Controller
         $this->validate($request,[
             'title'=>'required',
             'problemType'=>'required',
-            'userName'=>'required',
             'department'=>'required',
             'discription'=>'required'
         ]);
+
+
 
         //Create and save Problem
         $problem = new Problem;
         $problem->title = $request->input('title');
         $problem->problemType = $request->input('problemType');
-        $problem->userName = $request->input('userName');
+        $problem->userName = auth()->user()->name;
         $problem->department = $request->input('department');
         $problem->discription = $request->input('discription');
         $problem->user_id = auth()->user()->id;
+
+        $specialist = User::where('specialized',$problem->problemType)->get();
+        
+        if ($specialist->count()>0) {
+            $problem->specialist_id = $specialist->first()->id;
+        } else {
+            $problem->specialist_id = 1;
+        }
+        
+
         $problem->save();
         
 

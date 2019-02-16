@@ -21,27 +21,46 @@
     </div>
 
     <div class="form-group">
-            {{Form::label('userName', 'User Name')}}
+            {{Form::label('userName', 'User Name  :')}}
             {{Form::text('userName', $problem->userName, ['class' => 'form-control','placeholder'=>'Title'])}}
     </div>
 
     <div class="form-group">
-            {{Form::label('department', 'Problem Type')}}
+            {{Form::label('department', 'Department Name : ')}}
             {{ Form::select('department', array(
                 'HR',
                 'Technicians',
                 'Managment',
                 'Other'),
-                ['class' => 'form-control','placeholder'=>'Title']
+                ['class' => 'form-control','placeholder'=>'eg HR']
 
             )}}
     </div>
+
     <div class="form-group">
-            {{Form::label('discription', 'Disrciption')}}
-            {{Form::textarea('discription', $problem->discription, ['class' => 'form-control','placeholder'=>'Disrciption'])}}
+            {{Form::label('discription', 'Disrciption :')}}
+            {{Form::textarea('discription', $problem->discription, ['class' => 'form-control','placeholder'=>'Disrciption','id'=>'comment'])}}
     </div>
 
-    {{Form::hidden('_method','PUT')}}
+    <div class="row">
+           <div class="col">
+                   Completed :
+           </div>
+           <div class="col">
+                        <div class="radio">
+                                        <label> <input type="radio"  name="completed" value='1' > Yes </label>
+                                   </div>
+                                   <div class="radio">
+                                        <label > <input type="radio" name="completed" value="0" > No </label>
+                                   </div>
+                                    <div class="radio">
+                                       <label > <input type="radio" name="completed" value="0" > Working on It </label> 
+                                </div>
+           </div>
+        </div>
+
+   
+        {{Form::hidden('_method','PUT')}}
     {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
 
    {!! Form::close() !!}
