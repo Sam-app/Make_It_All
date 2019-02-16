@@ -15,4 +15,9 @@ class Problem extends Model
 
         return $this->belongsTo('App\User');
     }
+
+    public function calls(){
+
+        return $this->hasMany('App\Call');
+    }
 }

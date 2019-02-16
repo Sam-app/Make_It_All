@@ -9,7 +9,7 @@
             {{Form::text('title', '', ['class' => 'form-control','placeholder'=>'Title'])}}
     </div>
     <div class="form-group">
-        {{Form::number('problem_id', '1', ['class' => 'form-control'])}}
+        {{Form::number('problem_id', 1, ['class' => 'form-control'])}}
         </div>
 
     <div class="form-group">

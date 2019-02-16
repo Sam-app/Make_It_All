@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Problem;
+use App\Call;
 use DB;
 
 class ProblemsController extends Controller
@@ -71,8 +72,11 @@ class ProblemsController extends Controller
     {
        
        $problem = $problem = Problem::find($id);
+       
+       $calls = Call::where('problem_id', '=', $problem->id)->paginate(1);
 
-        return view('problems.show')->with('problem',$problem);
+      // return $calls;
+        return view('problems.show')->with('problem',$problem)->with('calls',$calls);
     }
 
     /**
@@ -84,6 +88,8 @@ class ProblemsController extends Controller
     public function edit($id)
     {
         $problem = $problem = Problem::find($id);
+
+        
         return view('problems.edit')->with('problem',$problem);
     }
 
