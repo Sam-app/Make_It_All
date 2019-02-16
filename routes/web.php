@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::resource('problems','ProblemsController');
 Auth::routes();
 Route::resource('calls','CallsController');
+Route::resource('tools','ToolsController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
