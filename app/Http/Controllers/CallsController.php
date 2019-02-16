@@ -25,7 +25,8 @@ class CallsController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('calls.create');
     }
 
     /**
@@ -36,7 +37,26 @@ class CallsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'problem_id'=>'required',
+            'tele_number'=>'required',
+            'discription'=>'required'
+        ]);
+
+        //Create and save Call
+        $call = new Call;
+        $call->title = $request->input('title');
+        $call->problem_id = $request->input('problem_id');
+        $call->discription = $request->input('discription');
+        $call->tele_number = $request->input('tele_number');
+        $call->user_id = auth()->user()->id;
+        $call->caller_name = auth()->user()->name;;
+        $call->save();
+        
+
+        return redirect('/calls')->with('success','Call Created');
+ 
     }
 
     /**
