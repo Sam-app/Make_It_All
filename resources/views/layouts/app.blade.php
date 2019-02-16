@@ -23,8 +23,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
+                    <img style="width: 100px;height:40px" src="{{ asset('img/logo.png') }}" alt="Make-IT-All">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,18 +36,16 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else  
-                        <li class="nav-item active">
+                        {{-- <li class="nav-item active">
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                          </li>
+                          </li> --}}
                           <li class="nav-item">
                             <a class="nav-link" href="/problems/create">New Record</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="/problems">Show All Record</a>
                           </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="#">logout</a>
-                        </li>
+                        
                         @endguest
                     </ul>
 
