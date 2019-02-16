@@ -39,6 +39,27 @@
                             </div>
                         </div>
 
+                        {{-- specialise inpute --}}
+                        <div class="form-group row">
+                            <label for="specialized" class="col-md-4 col-form-label text-md-right">{{ __('Specialized in:') }}</label>
+                            <div class="col-md-6">
+                                {{ Form::select('specialized', array(
+                                    'Printer'=>'Printer',
+                                        'Network'=>'Network',
+                                        'Operating system'=>'Operating system',
+                                        'Other'=>'Other'),
+                                        ['class' => 'form-control','placeholder'=>'eg Network']
+                    
+                                )}}
+                                @if ($errors->has('specialized'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('specialized') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                        </div>
+
                         <div class="form-group row">
                             <label for="tele_number" class="col-md-4 col-form-label text-md-right">{{ __('Tele Number') }}</label>
 

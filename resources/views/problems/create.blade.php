@@ -15,7 +15,7 @@
                 'Network'=>'Network',
                 'Operating system'=>'Operating system',
                 'Other'=>'Other'),
-                ['class' => 'form-control','placeholder'=>'Title']
+                ['class' => 'form-control','placeholder'=>'eg Network']
 
             )}}
     </div>
