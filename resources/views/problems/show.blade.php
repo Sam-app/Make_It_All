@@ -22,9 +22,9 @@
                             {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
                             {!!Form::close()!!} 
                     </div>
+                    <hr>
+                    <h6>Created on {{$problem->created_at}} by  : <strong>{!!$problem->userName!!}</strong></h6>
             </div>           
-            <hr>
-            <small>Created on {{$problem->created_at}}</small>
             <hr>
         </div>
 
