@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Problem;
 
 class SearchController extends Controller
 {
@@ -21,5 +22,12 @@ class SearchController extends Controller
                     ->get();
         
         return $problems;
+    }
+
+    public function completedProblems(){
+
+        $competed_problems = Problem::where('completed','1')->orderBy('id','desc')->paginate(4);
+
+        return view('search.completed')->with('completed_problems',$competed_problems);
     }
 }

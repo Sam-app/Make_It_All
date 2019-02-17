@@ -14,7 +14,7 @@ class CallsController extends Controller
      */
     public function index()
     {
-       $calls = Call::orderBy('id','desc')->paginate(1);
+       $calls = Call::orderBy('id','desc')->paginate(10);
        return view('calls.index')->with('calls',$calls);
     }
 
@@ -55,7 +55,7 @@ class CallsController extends Controller
         $call->save();
         
 
-        return redirect('/calls')->with('success','Call Created');
+        return redirect('/problems/'.$call->problem_id)->with('success','Call Created');
  
     }
 

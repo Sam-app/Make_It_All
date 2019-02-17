@@ -25,3 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //  search route
 Route::get('/search/{query}', 'SearchController@filter');
+
+//completed problems
+Route::get('/completed', 'SearchController@completedProblems');

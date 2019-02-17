@@ -17,9 +17,11 @@ class ProblemsController extends Controller
      */
     public function index()
     {
-         $problems = Problem::orderBy('id','desc')->paginate(4);
+         $ongoing_problems = Problem::where('completed','0')->orderBy('id','desc')->paginate(4);
 
-         return view('problems.index')->with('problems',$problems);
+          $competed_problems = Problem::where('completed','1')->orderBy('id','desc')->paginate(4);
+
+         return view('problems.index')->with('ongoing_problems',$ongoing_problems)->with('competed_problems',$competed_problems);
     }
 
     /**
@@ -85,10 +87,13 @@ class ProblemsController extends Controller
        
        $problem = $problem = Problem::find($id);
        
-       $calls = Call::where('problem_id', '=', $problem->id)->paginate(1);
+       $calls = Call::where('problem_id', '=', $problem->id)->paginate(2);
 
-      // return $calls;
-        return view('problems.show')->with('problem',$problem)->with('calls',$calls);
+       $specialist = User::find($problem->specialist_id);
+
+       // return $specialist;
+        return view('problems.show')->with('problem',$problem)
+                            ->with('calls',$calls)->with('specialist',$specialist);
     }
 
     /**
@@ -117,22 +122,28 @@ class ProblemsController extends Controller
         $this->validate($request,[
             'title'=>'required',
             'problemType'=>'required',
-            'userName'=>'required',
+          //  'userName'=>'required',
             'department'=>'required',
-            'discription'=>'required'
+            'discription'=>'required',
+            'specialist_id'=>'required',
+            'completed'=>'required'
         ]);
 
         //Create and save Problem
         $problem = Problem::find($id);
         $problem->title = $request->input('title');
         $problem->problemType = $request->input('problemType');
-        $problem->userName = $request->input('userName');
+        //$problem->userName = $request->input('userName');
         $problem->department = $request->input('department');
         $problem->discription = $request->input('discription');
+        $problem->completed = $request->input('completed');
+        $problem->specialist_id = $request->input('specialist_id');
+        $problem->resolved_by = $request->input('resolved_by');
+
         $problem->save();
         
 
-        return redirect('/problems')->with('success','Problem Updated');
+        return redirect('/problems/'.$problem->id)->with('success','Problem Updated');
     }
 
     /**
