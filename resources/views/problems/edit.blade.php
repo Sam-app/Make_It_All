@@ -22,7 +22,7 @@
 
     <div class="form-group col-md-5">
         {{Form::label('serial_number', 'Item serial :')}}
-        {{Form::text('serial_number', '', ['class' => 'form-control','placeholder'=>'Item serial'])}}
+        {{Form::text('serial_number', $problem->serial_number, ['class' => 'form-control','placeholder'=>'Item serial'])}}
      </div>
 
     <div class="form-group col-md-8">
