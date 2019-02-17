@@ -32,7 +32,7 @@
 
 
     <div class="form-group">
-            {{Form::label('department', 'Problem Type')}}
+            {{Form::label('department', 'Department :')}}
             {{ Form::select('department', array(
                 'HR'=>'HR',
                 'Technicians'=>'Technicians',
