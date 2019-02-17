@@ -41,6 +41,7 @@
 
        </div>
 
+       <h3 class='text-center'>Your Problems</h3>
        @if (count($problems)>0)
        <div class="body" id="tableBody">
                <table class="table" align="center">

@@ -308,9 +308,11 @@
                                             <h6 class="card-text">{{$problem->created_at}} by  : <strong>{!!$problem->userName!!}</strong></h6>
                                         </div>
                                 </div>
+
+                        <hr>
                         
                     <a href="/problems/{{$problem->id}}/edit" class="btn btn-primary">Edit</a>
-                    <a id="toggle_call_form" href="#call_form" class="btn btn-primary">call</a>
+                    <a id="toggle_call_form" href="#call_form" class="btn btn-primary">New Call</a>
 
                     <div class="btn float-right">
                                 {!!Form::open(['action'=>['ProblemsController@destroy',$problem->id],'method'=>'POST','class'=>'pull-right'])!!}
@@ -319,7 +321,7 @@
                                 {!!Form::close()!!} 
                     </div>
 
-                    <hr>
+                   
 
                 </div>    
         </div>
@@ -328,7 +330,7 @@
        {{-- Add a new call form --}}
         <div id='call_form' style="margin-top:30px">
                         <h3>Make New Call</h3>
-                        {!! Form::open(['action'=>'CallsController@store','method'=>'POST']) !!}
+                        {!! Form::open(['action'=>'CallsController@store','method'=>'POST' ]) !!}
                         
                         <div class="form-group">
                                 {{Form::label('title', 'Title')}}
@@ -359,7 +361,9 @@
 
         {{-- Problem assosiated calls  --}}
         @if (count($calls)>0)
-        <h2>This Problem assoicated Calls</h2>
+        <div class="banner" id="titleBanner">
+          <h2>Associated Calls</h2>
+        </div>
 
         <div class="body" id="tableBody">
                 <table class="table" align="center">

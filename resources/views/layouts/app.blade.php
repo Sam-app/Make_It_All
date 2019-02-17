@@ -43,7 +43,16 @@
                             <a class="nav-link" href="/problems/create">New Record</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="/problems">Show All Record</a>
+                            <a class="nav-link" href="/mytask">My Task</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/problems">Ongoing </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/completed">Resolved</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/tools">Items</a>
                           </li>
                         
                         @endguest
@@ -62,8 +71,23 @@
                                 </li>
                             @endif
                         @else
+
+                          {{-- Serach form --}}
+                          <li class="nav-item">
+                            {!! Form::open(['action'=>'SearchsController@store','method'=>'POST','class'=>'form-inline']) !!}
+                                <label class="sr-only" for="inlineFormInput">query</label>
+                                <input id="search_input" name="query" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Search problem">
+                                {{Form::submit('Search',['class'=>'btn btn-light'])}}
+
+                                {!! Form::close() !!}
+                          </li>
+                          {{-- End serach Form --}}
+
+
+
+
                             <li class="nav-item ">
-                               <div class="" aria-labelledby="">
+                               <div class="" aria-labelledby="" style="margin-left:9px">
                                     <a  class="nav-link" href="/home"   >
                                             {{ Auth::user()->name }} 
                                     </a>
@@ -71,7 +95,7 @@
                                </div>
                             </li>
                             <li class="nav-item">
-                                    <div class="" aria-labelledby="">
+                                    <div class="" aria-labelledby="" style="margin-top:5px">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
@@ -98,5 +122,25 @@
             </main>
         </div>
     </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+         $(document).ready(function(){
+    
+            // $("#search").click(function(){
+            //     var search = $('#search_input').val()
+            //     var search_url = 'makeitall.test/search/'+ search;
+            //     alert(search_url);
+            //     window.location.replace(search_url);
+
+            //  });
+    
+             
+     });
+     </script>
+
 </body>
 </html>

@@ -68,9 +68,21 @@ class ProblemsController extends Controller
         } else {
             $problem->specialist_id = 1;
         }
-        
-
         $problem->save();
+
+        $intial_call = "Initial call -".$problem->title;
+        $problem_count= Problem::all();
+        $problem_id = count($problem_count)+1;
+
+        //Create and save Call
+        $call = new Call;
+        $call->title = $intial_call;
+        $call->problem_id = $problem->id;
+        $call->discription = $request->input('discription');
+        $call->tele_number = auth()->user()->tele_number;
+        $call->user_id = auth()->user()->id;
+        $call->caller_name = auth()->user()->name;;
+        $call->save();
         
 
         return redirect('/problems')->with('success','Problem Created');

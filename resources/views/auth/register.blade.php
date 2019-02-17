@@ -47,7 +47,8 @@
                                     'Printer'=>'Printer',
                                         'Network'=>'Network',
                                         'Operating system'=>'Operating system',
-                                        'Other'=>'Other'),
+                                        'Other'=>'Other',
+                                        'None'=>'Not specialist'),
                                         ['class' => 'form-control','placeholder'=>'eg Network']
                     
                                 )}}
