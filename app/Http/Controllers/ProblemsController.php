@@ -65,13 +65,30 @@ class ProblemsController extends Controller
         $problem->discription = $request->input('discription');
         $problem->user_id = auth()->user()->id;
 
-        $specialist = User::where('specialized',$problem->problemType)->get();
+        // $specialist = User::where('specialized',$problem->problemType)->get();
         
-        if ($specialist->count()>0) {
-            $problem->specialist_id = $specialist->first()->id;
-        } else {
-            $problem->specialist_id = 1;
-        }
+        // if ($specialist->count()>0) {
+        //     $problem->specialist_id = $specialist->first()->id;
+        // } else {
+        //     $problem->specialist_id = 1;
+        // }
+                $result  = DB::select("SELECT users.id
+                                    FROM users LEFT JOIN problems ON users.id =problems.specialist_id
+                                    WHERE users.specialized ='".$problem->problemType."'
+                                    GROUP BY users.id
+                                    ORDER BY COUNT(problems.id)");
+
+            if (count($result)>0) {
+                $problem->specialist_id =$result[0]->id;
+            } else {
+                //In worst case if the is not specialist found in 
+                //this will avoid the system from csushing
+                $problem->specialist_id = 0;
+            }
+            
+
+
+
         $problem->save();
 
         $intial_call = "Initial call -".$problem->title;
