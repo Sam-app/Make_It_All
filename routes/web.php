@@ -15,20 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('problems','ProblemsController');
+Route::resource('problems','ProblemsController')->middleware('auth');
 Auth::routes();
-Route::resource('calls','CallsController');
-Route::resource('tools','ToolsController');
-Route::resource('searchs','SearchsController');
+Route::resource('calls','CallsController')->middleware('auth');
+Route::resource('tools','ToolsController')->middleware('auth');
+Route::resource('searchs','SearchsController')->middleware('auth');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 //  search route
- Route::get('/search/{query}', 'SearchController@filter');
+ Route::get('/search/{query}', 'SearchController@filter')->middleware('auth');
 
 //completed problems
-Route::get('/completed', 'SearchController@completedProblems');
+Route::get('/completed', 'SearchController@completedProblems')->middleware('auth');
 
-Route::get('/mytask', 'SearchController@task');
+Route::get('/mytask', 'SearchController@task')->middleware('auth');
