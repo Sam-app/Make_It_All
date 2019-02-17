@@ -6,7 +6,7 @@
     
     <div class="form-group">
             {{Form::label('title', 'Title')}}
-            {{Form::text('title', '', ['class' => 'form-control','placeholder'=>'Title'])}}
+            {{Form::text('title', '', ['class' => 'form-control col-md-8','placeholder'=>'Title'])}}
     </div>
     <div class="form-group">
             {{Form::label('problemType', 'Problem Type')}}
@@ -20,10 +20,16 @@
             )}}
     </div>
 
+    <div class="form-group col-md-5" style='margin-left:-11px'>
+        {{Form::label('serial_number', 'Item serial :')}}
+        {{Form::text('serial_number', '', ['class' => 'form-control','placeholder'=>'Item serial'])}}
+     </div>
+
     {{-- <div class="form-group">
             {{Form::label('userName', 'User Name')}}
             {{Form::text('userName', '', ['class' => 'form-control','placeholder'=>'Title'])}}
     </div> --}}
+
 
     <div class="form-group">
             {{Form::label('department', 'Problem Type')}}

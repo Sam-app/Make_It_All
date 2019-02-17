@@ -20,6 +20,11 @@
             )}}
     </div>
 
+    <div class="form-group col-md-5">
+        {{Form::label('serial_number', 'Item serial :')}}
+        {{Form::text('serial_number', '', ['class' => 'form-control','placeholder'=>'Item serial'])}}
+     </div>
+
     <div class="form-group col-md-8">
             {{Form::label('specialist_id', 'Specialist ID  :')}}
             {{Form::number('specialist_id', $problem->specialist_id, ['class' => 'form-control'])}}

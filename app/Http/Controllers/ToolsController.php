@@ -41,7 +41,7 @@ class ToolsController extends Controller
         //
         $this->validate($request,[
             'name'=>'required',
-            'serial_number'=>'required|min:10|max:28',
+            'serial_number'=>'required|unique:tools|min:10|max:28',
             'type'=>'required',
             'bought_on'=>'required',
         ]);
@@ -68,7 +68,9 @@ class ToolsController extends Controller
      */
     public function show($id)
     {
-        //
+        $tool = Tool::findorfail($id);
+
+        return $tool;
     }
 
     /**

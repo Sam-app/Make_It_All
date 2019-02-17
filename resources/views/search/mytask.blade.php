@@ -216,6 +216,7 @@
                     <tr>
                         <th class="headingCell">Problem Id</th>
                         <th class="headingCell">Problem title</th>
+                        <th class="headingCell">Item serial</th>
                         <th class="headingCell">Problem Type</th>
                         <th class="headingCell">Caller Name</th>
                         <th class="headingCell">Department</th>
@@ -225,16 +226,18 @@
             @foreach ($problems as $problem)
     
                         <tr class="dataRow">
-                                <td class="dataCell">{{$problem->id}}</td>
-                                <td class="dataCell">{{$problem->title}}</td>
-                                <td class="dataCell">{{$problem->problemType}}</td>
-                                <td class="dataCell">{{$problem->userName}}</td>
-                                <td class="dataCell">{{$problem->department}}</td>
-                                <td class="dataCell">{{$problem->created_at}}</td>
+                                <td class="dataCell">{!!$problem->id!!}</td>
+                                <td class="dataCell">{!!$problem->title!!}</td>
+                                <td class="dataCell">{!!$problem->serial_number!!}</td>
+                                <td class="dataCell">{!!$problem->problemType!!}</td>
+                                <td class="dataCell">{!!$problem->userName!!}</td>
+                                <td class="dataCell">{!!$problem->department!!}</td>
+                                <td class="dataCell">{!!$problem->created_at!!}</td>
                                 <td class="dataCell"><a href="/problems/{{$problem->id}}"><button type="button" class="btn btn-primary">View</button></a></td>
                          </tr>
     
             @endforeach
+            </table>
             {{$problems->links()}}
     
             @else

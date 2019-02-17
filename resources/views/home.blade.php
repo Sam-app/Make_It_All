@@ -35,13 +35,13 @@
       
 
          <p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">New Record</a>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Current Jobs</a>
+            <a class="btn btn-primary btn-lg" href="/problems/create" role="button">New Record</a>
+            <a class="btn btn-primary btn-lg" href="/problems" role="button">Ongoing Jobs</a>
            </p>
 
        </div>
 
-       <h3 class='text-center'>Your Problems</h3>
+       <h3 class='text-center'>Your ongoing Problems</h3>
        @if (count($problems)>0)
        <div class="body" id="tableBody">
                <table class="table" align="center">
@@ -70,7 +70,7 @@
            {{$problems->links()}}
       
            @else
-           <h3> No Problems Found</h3>
+           <h4> There is no reported problem</h5>
        @endif
        
 </div>

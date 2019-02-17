@@ -214,7 +214,6 @@
                     <th class="headingCell">Serial Number</th>
                     <th class="headingCell">Item Type</th>
                     <th class="headingCell">Purches Date</th>
-                    <th class="headingCell"> </th>
                 </tr>
         @foreach ($tools as $tool)
                  
@@ -223,13 +222,16 @@
                             <td class="dataCell">{{$tool->serial_number}}</td>
                             <td class="dataCell">{{$tool->type}}</td>
                             <td class="dataCell">{{$tool->bought_on}}</td>
-                            <td class="dataCell"><a href="/tools/{{$tool->id}}"><button type="button" class="btn btn-primary">View</button></a></td>
                      </tr>
                 
         @endforeach
+
+      </table>
         {{$tools->links()}}
    
         @else
-        <h3>Ther is No Item</h3>
+        <h3>There is No Item</h3>
     @endif
+      <a   href="/tools/create" class="btn btn-primary text-right">Add item</a>
+
 @endsection

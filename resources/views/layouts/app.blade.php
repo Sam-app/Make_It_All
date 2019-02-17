@@ -122,6 +122,9 @@
             </main>
         </div>
     </div>
+    <!-- Footer -->
+    <hr>
+
 
 
 

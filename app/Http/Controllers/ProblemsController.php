@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Problem;
 use App\Call;
 use App\User;
+use App\Tool;
 use DB;
 
 class ProblemsController extends Controller
@@ -47,7 +48,8 @@ class ProblemsController extends Controller
             'title'=>'required',
             'problemType'=>'required',
             'department'=>'required',
-            'discription'=>'required'
+            'discription'=>'required',
+            'serial_number'=>'required|min:10|max:28'
         ]);
 
 
@@ -55,6 +57,7 @@ class ProblemsController extends Controller
         //Create and save Problem
         $problem = new Problem;
         $problem->title = $request->input('title');
+        $problem->serial_number = $request->input('serial_number');
         $problem->problemType = $request->input('problemType');
         $problem->userName = auth()->user()->name;
         $problem->department = $request->input('department');
@@ -103,9 +106,12 @@ class ProblemsController extends Controller
 
        $specialist = User::find($problem->specialist_id);
 
-       // return $specialist;
+       $item = Tool::where('serial_number','=',$problem->serial_number)->first();
+
+        //return $item;
         return view('problems.show')->with('problem',$problem)
-                            ->with('calls',$calls)->with('specialist',$specialist);
+                            ->with('calls',$calls)->with('specialist',$specialist)
+                            ->with('item',$item);
     }
 
     /**
@@ -138,12 +144,14 @@ class ProblemsController extends Controller
             'department'=>'required',
             'discription'=>'required',
             'specialist_id'=>'required',
-            'completed'=>'required'
+            'completed'=>'required',
+            'serial_number'=>'required|min:10|max:28'
         ]);
 
         //Create and save Problem
         $problem = Problem::find($id);
         $problem->title = $request->input('title');
+        $problem->serial_number = $request->input('serial_number');
         $problem->problemType = $request->input('problemType');
         //$problem->userName = $request->input('userName');
         $problem->department = $request->input('department');

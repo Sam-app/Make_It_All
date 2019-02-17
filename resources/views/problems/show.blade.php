@@ -203,7 +203,27 @@
   
 <!-- content  -->
 
-        <a href="/problems" class='btn btn-primary'>Go Back</a>
+
+
+        {{-- show item if exist --}}
+        @if($item)
+        <div class="body" id="tableBody">
+          <table class="table" align="center">
+              <tr>
+                <th class="headingCell">Item Name</th>
+                <th class="headingCell">Serial Number</th>
+                <th class="headingCell">Item Type</th>
+                <th class="headingCell">Purches Date</th>
+            </tr>
+            <tr class="dataRow">
+              <td class="dataCell">{{$item->name}}</td>
+              <td class="dataCell">{{$item->serial_number}}</td>
+              <td class="dataCell">{{$item->type}}</td>
+              <td class="dataCell">{{$item->bought_on}}</td>
+            </tr>
+          </table>
+            
+        @endif
 
        <div class="card bg-light">
         
@@ -384,9 +404,10 @@
                                 <td class="dataCell">{{$call->caller_name}}</td>
                                 <td class="dataCell">{{$call->tele_number}}</td>
                                 <td class="dataCell">{{$call->created_at}}</td>
-                        </tr>
-                    
+                        </tr>                   
             @endforeach
+          </table>
+          
             {{$calls->links()}}
         @else
             <h5>No Related call found</h5>
